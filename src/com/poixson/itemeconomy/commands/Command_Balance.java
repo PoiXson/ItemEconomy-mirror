@@ -1,0 +1,95 @@
+package com.poixson.itemeconomy.commands;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import com.poixson.itemeconomy.ItemEconomyPlugin;
+import com.poixson.itemeconomy.economy.EconManager;
+import com.poixson.itemeconomy.economy.PlayerEconDAO;
+import com.poixson.tools.commands.xCMD_Labels;
+
+
+public class Command_Balance extends xCMD_Labels {
+
+	protected final ItemEconomyPlugin plugin;
+
+
+
+	public Command_Balance(final ItemEconomyPlugin plugin) {
+		super(
+			"balance", "bal",
+			"money"
+		);
+		this.plugin = plugin;
+	}
+
+
+
+	@Override
+	public boolean run(final CommandSender sender, final String[] args) {
+		final Player player = (sender instanceof Player ? (Player)sender : null);
+		final int num_args = args.length;
+		final EconManager economy = this.plugin.getEconomy();
+		// own balance
+		if (num_args == 0) {
+			if (player == null
+			|| !player.hasPermission("itemeconomy.cmd.balance.top"))
+				return false;
+			final double amount = economy.getBalance(player);
+			final String amount_formatted = economy.format(amount);
+			sender.sendMessage(String.format(
+				" %sBalance: %s%s",
+				ChatColor.DARK_AQUA,
+				(amount > 0.0 ? ChatColor.GREEN : ChatColor.RED),
+				amount_formatted
+			));
+		} else
+		// top player balances
+		if (num_args == 1
+		&& "top".equals(args[0])) {
+			if (player != null && !player.hasPermission("itemeconomy.cmd.balance.top"))
+				return false;
+			final StringBuilder msg = new StringBuilder();
+			msg.append('\n').append(ChatColor.GOLD)
+				.append("Top Balances\n============\n");
+			for (final PlayerEconDAO dao : economy.getTopBalances()) {
+				final double amount = dao.amount.get();
+				msg.append(' ')
+					.append(ChatColor.DARK_AQUA)
+					.append(dao.player_name).append(": ")
+					.append(amount > 0.0 ? ChatColor.GREEN : ChatColor.RED)
+					.append(economy.format(amount))
+					.append('\n');
+			}
+			msg.append(' ');
+			sender.sendMessage(msg.toString());
+		// other player balance
+		} else {
+			if (player != null
+			&& !player.hasPermission("itemeconomy.cmd.balance.others"))
+				return false;
+			for (final String name : args) {
+				@SuppressWarnings("deprecation")
+				final OfflinePlayer p = Bukkit.getOfflinePlayer(name);
+				if (p != null) {
+					final double amount = economy.getBalance(p);
+					final String amount_formatted = economy.format(amount);
+					sender.sendMessage(String.format(
+						" %s%s: %s%s",
+						ChatColor.DARK_AQUA,
+						name,
+						(amount > 0.0 ? ChatColor.GREEN : ChatColor.RED),
+						amount_formatted
+					));
+				}
+			}
+		}
+		return true;
+	}
+
+
+
+}

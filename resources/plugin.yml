@@ -8,3 +8,27 @@ depend:
 authors: [ lorenzop ]
 website: ${project.url}
 description: ${project.description}
+commands:
+    balance:
+        description: "Display the amount of money a player has"
+    bal:
+        description: "Display the amount of money a player has"
+    money:
+        description: "Display the amount of money a player has"
+permissions:
+    itemeconomy.*:
+        default: op
+        description: Gives access to all Item Economy commands.
+        children:
+            itemeconomy.cmd.balance:        true
+            itemeconomy.cmd.balance.top:    true
+            itemeconomy.cmd.balance.others: true
+    itemeconomy.cmd.balance:
+        default: true
+        description: Allow the /balance command.
+    itemeconomy.cmd.balance.top:
+        default: true
+        description: Allow the /balance top command.
+    itemeconomy.cmd.balance.others:
+        default: op
+        description: Allow the /balance <player> command.
