@@ -8,13 +8,6 @@ depend:
 authors: [ lorenzop ]
 website: ${project.url}
 description: ${project.description}
-commands:
-    balance:
-        description: "Display the amount of money a player has"
-    bal:
-        description: "Display the amount of money a player has"
-    money:
-        description: "Display the amount of money a player has"
 permissions:
     itemeconomy.*:
         default: op

@@ -1,18 +1,25 @@
 package com.poixson.itemeconomy.commands;
 
+import java.io.Closeable;
+
 import com.poixson.itemeconomy.ItemEconomyPlugin;
-import com.poixson.tools.commands.xCMD_Handler;
 
 
-public class Commands extends xCMD_Handler {
+public class Commands implements Closeable {
 
-	protected final Command_Balance cmd_balance;
+	protected final Command_Balance cmd_balance; // /balance
 
 
 
 	public Commands(final ItemEconomyPlugin plugin) {
-		super(plugin);
-		this.addCommand(this.cmd_balance = new Command_Balance(plugin));
+		this.cmd_balance = new Command_Balance(plugin);
+	}
+
+
+
+	@Override
+	public void close() {
+		this.cmd_balance.close();
 	}
 
 

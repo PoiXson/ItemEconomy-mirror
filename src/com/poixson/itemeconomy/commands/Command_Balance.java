@@ -1,27 +1,35 @@
 package com.poixson.itemeconomy.commands;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.poixson.itemeconomy.ItemEconomyPlugin;
 import com.poixson.itemeconomy.economy.EconManager;
 import com.poixson.itemeconomy.economy.PlayerEconDAO;
-import com.poixson.tools.commands.xCMD_Labels;
+import com.poixson.tools.commands.pxnCommandRoot;
 
 
-public class Command_Balance extends xCMD_Labels {
+public class Command_Balance extends pxnCommandRoot {
 
 	protected final ItemEconomyPlugin plugin;
 
 
 
 	public Command_Balance(final ItemEconomyPlugin plugin) {
-		super(
-			"balance", "bal",
-			"money"
+		super(plugin,
+			"Display your financial balance.", // desc
+			null, // usage
+			"itemeconomy.cmd.balance", // perm
+			new String[] {
+				"balance", "bal",
+				"money"
+			}
 		);
 		this.plugin = plugin;
 	}
@@ -29,7 +37,8 @@ public class Command_Balance extends xCMD_Labels {
 
 
 	@Override
-	public boolean run(final CommandSender sender, final String[] args) {
+	public boolean onCommand(final CommandSender sender,
+			final Command command, final String label, final String[] args) {
 		final Player player = (sender instanceof Player ? (Player)sender : null);
 		final int num_args = args.length;
 		final EconManager economy = this.plugin.getEconomy();
