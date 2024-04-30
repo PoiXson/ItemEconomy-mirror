@@ -22,11 +22,13 @@ public class Command_Balance extends pxnCommandRoot {
 
 
 	public Command_Balance(final ItemEconomyPlugin plugin) {
-		super(plugin,
+		super(
+			plugin,
+			"itemeconomy", // namespace
 			"Display your financial balance.", // desc
 			null, // usage
 			"itemeconomy.cmd.balance", // perm
-			new String[] {
+			new String[] { // labels
 				"balance", "bal",
 				"money"
 			}
