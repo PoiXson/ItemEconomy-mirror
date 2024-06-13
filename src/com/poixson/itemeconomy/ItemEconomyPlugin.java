@@ -13,7 +13,7 @@ import com.poixson.tools.xJavaPlugin;
 public class ItemEconomyPlugin extends xJavaPlugin {
 	@Override public int getSpigotPluginID() { return 0; }
 	@Override public int getBStatsID() {       return 21299;  }
-	public static final String CHAT_PREFIX = ChatColor.AQUA+"[Economy] "+ChatColor.WHITE;
+	public static final String CHAT_PREFIX = ChatColor.DARK_AQUA+"[Economy] "+ChatColor.WHITE;
 
 	protected final EconManager economy;
 
