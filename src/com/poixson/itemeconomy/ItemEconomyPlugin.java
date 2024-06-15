@@ -6,7 +6,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import com.poixson.itemeconomy.commands.Commands;
-import com.poixson.itemeconomy.economy.EconManager;
 import com.poixson.tools.xJavaPlugin;
 
 
@@ -15,15 +14,12 @@ public class ItemEconomyPlugin extends xJavaPlugin {
 	@Override public int getBStatsID() {       return 21299;  }
 	public static final String CHAT_PREFIX = ChatColor.DARK_AQUA+"[Economy] "+ChatColor.WHITE;
 
-	protected final EconManager economy;
-
 	protected final AtomicReference<Commands> commands = new AtomicReference<Commands>(null);
 
 
 
 	public ItemEconomyPlugin() {
 		super(ItemEconomyPlugin.class);
-		this.economy = new EconManager(this);
 	}
 
 
@@ -31,8 +27,6 @@ public class ItemEconomyPlugin extends xJavaPlugin {
 	@Override
 	public void onEnable() {
 		super.onEnable();
-		// economy
-		this.economy.start();
 		// commands
 		{
 			final Commands commands = new Commands(this);
@@ -51,14 +45,6 @@ public class ItemEconomyPlugin extends xJavaPlugin {
 			if (commands != null)
 				commands.close();
 		}
-		// economy
-		this.economy.stop();
-	}
-
-
-
-	public EconManager getEconomy() {
-		return this.economy;
 	}
 
 
