@@ -1,17 +1,9 @@
 package com.poixson.itemeconomy.commands;
 
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import com.poixson.itemeconomy.ItemEconomyPlugin;
-import com.poixson.itemeconomy.economy.EconManager;
-import com.poixson.itemeconomy.economy.PlayerEconDAO;
 import com.poixson.tools.commands.pxnCommandRoot;
 
 
@@ -41,6 +33,9 @@ public class Command_Balance extends pxnCommandRoot {
 	@Override
 	public boolean onCommand(final CommandSender sender,
 			final Command command, final String label, final String[] args) {
+return false;
+	}
+/*
 		final Player player = (sender instanceof Player ? (Player)sender : null);
 		final int num_args = args.length;
 		final EconManager economy = this.plugin.getEconomy();
@@ -99,7 +94,7 @@ public class Command_Balance extends pxnCommandRoot {
 			}
 		}
 		return true;
-	}
+*/
 
 
 
