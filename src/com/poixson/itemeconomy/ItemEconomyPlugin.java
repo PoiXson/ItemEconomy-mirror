@@ -34,6 +34,9 @@ public class ItemEconomyPlugin extends xJavaPlugin {
 			if (previous != null)
 				previous.close();
 		}
+		// save
+		this.setConfigChanged();
+		this.saveConfigs();
 	}
 
 	@Override
@@ -62,7 +65,6 @@ public class ItemEconomyPlugin extends xJavaPlugin {
 		this.config.set(cfg);
 		this.configDefaults(cfg);
 		cfg.options().copyDefaults(true);
-		this.saveConfigs();
 	}
 	@Override
 	protected void configDefaults(final FileConfiguration cfg) {
