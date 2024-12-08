@@ -2,17 +2,19 @@ package com.poixson.itemeconomy;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import com.poixson.itemeconomy.commands.Commands;
 import com.poixson.tools.xJavaPlugin;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+
 
 public class ItemEconomyPlugin extends xJavaPlugin {
 	@Override public int getSpigotPluginID() { return 0; }
 	@Override public int getBStatsID() {       return 21299;  }
-	public static final String CHAT_PREFIX = ChatColor.DARK_AQUA+"[Economy] "+ChatColor.WHITE;
+	public static final Component CHAT_PREFIX = Component.text("[Economy] ").color(NamedTextColor.AQUA);
 
 	protected final AtomicReference<Commands> commands = new AtomicReference<Commands>(null);
 
