@@ -12,8 +12,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 
 
 public class ItemEconomyPlugin extends xJavaPlugin {
-	@Override public int getSpigotPluginID() { return 0; }
-	@Override public int getBStatsID() {       return 21299;  }
+	@Override public int getBStatsID() { return 21299; }
 	public static final Component CHAT_PREFIX = Component.text("[Economy] ").color(NamedTextColor.AQUA);
 
 	protected final AtomicReference<Commands> commands = new AtomicReference<Commands>(null);
