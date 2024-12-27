@@ -20,7 +20,7 @@ public class ItemEconomyPlugin extends xJavaPlugin {
 
 
 	public ItemEconomyPlugin() {
-		super(ItemEconomyPlugin.class);
+		super();
 	}
 
 
