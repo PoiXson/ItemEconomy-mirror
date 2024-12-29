@@ -1,0 +1,6 @@
+ItemEconomy - Items as money
+
+
+2025-- - 0.2.
+==================
+* initial release
