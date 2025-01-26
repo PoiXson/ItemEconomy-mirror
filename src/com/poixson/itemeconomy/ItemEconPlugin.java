@@ -11,7 +11,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 
 
-public class ItemEconomyPlugin extends xJavaPlugin {
+public class ItemEconPlugin extends xJavaPlugin<ItemEconPlugin> {
 	@Override public int getBStatsID() { return 21299; }
 	public static final Component CHAT_PREFIX = Component.text("[Economy] ").color(NamedTextColor.AQUA);
 
